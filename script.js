@@ -105,3 +105,11 @@ document.querySelectorAll("[data-topic]").forEach(element => {
   element.addEventListener("click", () => choose(element.dataset.topic));
 });
 choose("grenzen");
+
+// Herkomst van campagne-aanmeldingen; alleen bekende kanalen doorgeven.
+const campaignSource = new URLSearchParams(window.location.search).get("source");
+if (["facebook", "instagram", "linkedin", "tiktok"].includes(campaignSource)) {
+  document.querySelectorAll('a[href="https://opvoedmaatje-productie-live-versie.up.railway.app/testouders"]').forEach(link => {
+    link.href += "?source=" + encodeURIComponent(campaignSource);
+  });
+}
